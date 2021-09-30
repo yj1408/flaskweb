@@ -26,7 +26,10 @@ def memberlist():
     rs = cur.fetchall()
     #print(rs)
     conn.close()
-    return render_template('memberlist.html', rs=rs)
+    if 'userID' in session:
+        return render_template('memberlist.html', rs=rs, username=session.get('userID'), login=True)
+    else:
+        return render_template('memberlist.html', login=False)
 
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
@@ -51,6 +54,21 @@ def register():
 
     else:
         return render_template('register.html')
+
+@app.route('/member_view/<string:id>')
+def member_view(id):
+    conn = getconn()
+    cur = conn.cursor()
+    sql = "SELECT * FROM member WHERE memberid = '%s' " % (id)
+    cur.execute(sql)
+    rs = cur.fetchone()
+    print(rs)
+    conn.close()
+    if "userID" in session:
+        return render_template('member_view.html', rs=rs, username=session.get('userID'), login=True)
+    else:
+        return render_template('member_view.html', login = False)
+
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
