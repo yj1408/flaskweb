@@ -1,0 +1,15 @@
+/* main 스타일 */
+nav a{
+    text-decoration : none;
+    color : #000;
+}
+
+/* memberlist 스타일 */
+table, th, td{
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+}
+th, td{
+    padding : 10px;
+}
+© 2021 GitHub, Inc.

@@ -1,0 +1,10 @@
+<nav>
+    <a href="{{ url_for('main') }}"> Home | </a>
+    <a href="{{ url_for('memberlist') }}"> 회원목록 | </a>
+    <a href="{{ url_for('register') }}"> 회원가입 | </a>
+    {% if login %}
+        <a href="{{ url_for('logout') }}">({{ username }}님) 로그아웃 |</a>
+    {% else %}
+        <a href="{{ url_for('login') }}">로그인 |</a>
+    {% endif  %}
+</nav>
