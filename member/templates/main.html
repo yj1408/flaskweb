@@ -6,8 +6,15 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    {%  include 'navbar.html'  %}
-<!--    외부 파일 포함, 가져오기-->
-    <h2>안녕하세요~ 회원 관리 사이트입니다.</h2>
+    <div id="container">
+        {%  include 'navbar.html'  %}
+        <!--외부 파일 포함, 가져오기-->
+        <section>
+            <h2>안녕하세요~ 회원 관리 사이트입니다.</h2>
+            <img src="{{ url_for('static', filename='images/coffee-blue.jpg' ) }}" id="pic">
+            <p id="demo"></p>
+        </section>
+    </div>
+    <script src="{{ url_for('static', filename='js/main_js.js') }}"></script>
 </body>
 </html>

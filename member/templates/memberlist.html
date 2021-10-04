@@ -6,21 +6,26 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-  {%  include 'navbar.html'  %}
-  <h2>회원 목록</h2>
-  <table>
-      <tr>
-          <th>아이디</th><th>패스워드</th><th>이름</th><th>나이</th><th>가입일</th>
-      </tr>
-      {% for i in rs %}
-      <tr>
-            <td><a href="{{ url_for('member_view', id=i[0]) }}">{{ i[0] }}</a></td>
-            <td>{{ i[1] }}</td>
-            <td>{{ i[2] }}</td>
-            <td>{{ i[3] }}</td>
-            <td>{{ i[4] }}</td>
-      </tr>
-      {% endfor %}
-  </table>
+    <div id="container">
+      {%  include 'navbar.html'  %}
+        <section>
+          <h2>회원 목록</h2>
+          <table class="tbl_list">
+              <tr>
+                  <th>아이디</th><th>패스워드</th><th>이름</th><th>나이</th><th>가입일</th>
+              </tr>
+              {% for i in rs %}
+              <tr>
+                    <td>{{ loop.index }}</td>
+                    <td><a href="{{ url_for('member_view', id=i[0]) }}">{{ i[0] }}</a></td>
+                    <td>{{ i[1] }}</td>
+                    <td>{{ i[2] }}</td>
+                    <td>{{ i[3] }}</td>
+                    <td>{{ i[4] }}</td>
+              </tr>
+              {% endfor %}
+          </table>
+        </section>
+    </div>
 </body>
 </html>

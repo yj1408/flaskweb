@@ -8,6 +8,7 @@ def getconn():
     conn = sqlite3.connect("c:/webdb/webdb.db")
     return conn
 
+# index() 페이지
 @app.route('/')
 def main():
     if 'userID' in session:  # 세션에 userID 이름이 있으면(로그인이 됐다면)
@@ -15,6 +16,7 @@ def main():
     else:
         return render_template('main.html', login=False)
 
+# 회원 목록
 @app.route('/memberlist')
 def memberlist():
     # DB 연동
@@ -31,6 +33,7 @@ def memberlist():
     else:
         return render_template('memberlist.html', login=False)
 
+# 회원 등록
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -50,11 +53,12 @@ def register():
         conn.commit()
         conn.close()
 
-        return redirect(url_for('memberlist')) # 강제로 주소(페이지) 이동
+        return redirect(url_for('main')) # 강제로 주소(페이지) 이동
 
     else:
         return render_template('register.html')
 
+# 회원 상세 보기 - 1명
 @app.route('/member_view/<string:id>')
 def member_view(id):
     conn = getconn()
@@ -69,7 +73,7 @@ def member_view(id):
     else:
         return render_template('member_view.html', login = False)
 
-
+# 회원 로그인
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -94,8 +98,47 @@ def login():
     else:
         return render_template("login.html")
 
+# 회원 로그아웃
 @app.route('/logout')
 def logout():
     session.pop('userID') # 세션 삭제
     return redirect(url_for('main'))
+
+# 회원 삭제
+@app.route('/member_delete/<string:id>')
+def member_delete(id):
+    conn = getconn()
+    cur = conn.cursor()
+    sql = "DELETE FROM member WHERE memberid = '%s' " % (id)
+    cur.execute(sql)
+    conn.commit()
+    conn.close()
+    return redirect(url_for('memberlist'))
+
+# 회원 수정
+@app.route('/member_edit/<string:id>', methods = ['GET', 'POST'])
+def member_edit(id):
+    if request.method == 'POST':
+        pwd = request.form['passwd']
+        name = request.form['name']
+        age = request.form['age']
+        date = request.form['reg_date']
+
+        conn = getconn()
+        cur = conn.cursor()
+        sql = "UPDATE member SET passwd = '%s', name ='%s', age ='%s', reg_date='%s' WHERE memberid = '%s' " % (pwd, name, age, date, id)
+        cur.execute(sql)
+        conn.commit()
+        conn.close()
+        return redirect(url_for('member_view', id=id))
+
+    else:
+        conn = getconn()
+        cur = conn.cursor()
+        sql = "SELECT * FROM member WHERE memberid = '%s' " % (id)
+        cur.execute(sql)
+        rs = cur.fetchone()
+        conn.close()
+        return render_template('member_edit.html', rs=rs)
+
 app.run()

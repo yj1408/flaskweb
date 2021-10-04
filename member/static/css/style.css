@@ -1,15 +1,46 @@
 /* main 스타일 */
-nav a{
-    text-decoration : none;
-    color : #000;
-}
+*{margin: 0; padding: 0} /*여백 초기화*/
+#container{width: 1000px; margin: 0 auto;}
+header{height: 100px;}
+nav ul{list-style: none; text-align: right; margin-right:150px; padding-top: 25px;}
+nav ul li{display: inline; margin: 10px; border-top: 3px solid #333; padding:10px;}
+nav ul li a{text-decoration: none; color: #000;}
+nav ul li:hover{background-color: #eee;}
+section{text-align: center;}
+section h2{margin-bottom: 20px;}
+section img{margin-bottom: 10px;}
+
+/* register 스타일*/
+.join{width:550px; margin:0 auto;}
+.join ul{list-style: none; padding: 10px;}
+.join ul li{margin:15px;}
+.join ul li label{width:120px; float:left; text-align: right;}
+.join ul li input[type="text"],input[type="date"]{widt:250px; height:30px;}
+.join ul li input[type="password"]{widt:250px; height:30px;}
+.join ul li input[type="submit"], input[type="reset"]{width: 70px; height:30px; margin: 5px;}
+
+/* login 스타일 */
+.login{width: 450px; margin: 0 auto;}
+.login ul{list-style: none; padding: 10px;}
+.login ul li{margin: 20px 10px;}
+.login ul li label{width:120px; float:left; text-align: right;}
+.login ul li input[type="text"],input[type="date"]{widt:250px; height:30px;}
+.login ul li input[type="password"]{widt:250px; height:30px;}
+.login ul li input[type="submit"]{width: 70px; height:30px;}
+.login p{color: #f00; margin-bottom: 10px;}
 
 /* memberlist 스타일 */
-table, th, td{
-    border: 1px solid #ccc;
-    border-collapse: collapse;
-}
-th, td{
-    padding : 10px;
-}
-© 2021 GitHub, Inc.
+.tbl_list{width:600px;}
+.tbl_list, th, td{border: 1px solid #ccc; border-collapse: collapse; margin:0 auto;}
+.tbl_list th, td{padding : 10px;}
+.tbl_list th{background-color: #eee;}
+
+/* member_view 스타일 */
+.tbl_view{width: 400px;}
+.tbl_view, th, td{border: 1px solid #ccc; border-collapse: collapse; margin:0 auto;}
+.tbl_view th, td{padding : 10px; height: 40px;}
+.tbl_view input[type="text"],input[type="password"]{widt:200px; height:30px;}
+.tbl_view a{text-decoration; none; color: #000}
+.tbl_view .button{border: 1px solid #333; background-color: #eee; padding: 5px;
+margin: 5px; border-radius:3px; width:55px; height:35px;}
+.tbl_view input[type="submit"],input[type="reset"]{widt:55px; height:35px; margin: 5px; font-szie:2em;}

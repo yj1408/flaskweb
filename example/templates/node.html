@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM에 노드 추가하기</title>
+</head>
+<body>
+    <div id="content">
+        <h1>DOM 노드 추가하기</h1>
+        <a href="#" onclick="addp(); this.onclick='' ">더 보기</a>
+        <!-- addp()를 1번만 실행 -->
+        <div id="demo"></div>
+    </div>
+    <script src="{{ url_for('static', filename='js/addp.js') }}"></script>
+</body>
+</html>

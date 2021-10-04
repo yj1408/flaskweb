@@ -1,11 +1,17 @@
-<nav>
-    {% if login %}
-        <a href="{{ url_for('main') }}"> Home | </a>
-        <a href="{{ url_for('logout') }}">({{ username }}님) 로그아웃 |</a>
-        <a href="{{ url_for('memberlist') }}"> 회원목록 | </a>
-    {% else %}
-        <a href="{{ url_for('main') }}"> Home | </a>
-        <a href="{{ url_for('register') }}"> 회원가입 | </a>
-        <a href="{{ url_for('login') }}">로그인 |</a>
-    {% endif  %}
-</nav>
+<header>
+    <nav>
+        <ul>
+        {% if session['userID'] %}
+            <li><a href="{{ url_for('main') }}"> Home</a></li>
+            <li><a href="{{ url_for('logout') }}">({{ username }}님) 로그아웃</a></li>
+            <li><a href="{{ url_for('memberlist') }}"> 회원목록</a></li>
+            <li><a href="#">게시판</a></li>
+        {% else %}
+            <li><a href="{{ url_for('main') }}"> Home</a></li>
+            <li><a href="{{ url_for('register') }}"> 회원가입</a></li>
+            <li><a href="{{ url_for('login') }}">로그인</a></li>
+            <li><a href="#">게시판</a></li>
+        {% endif  %}
+        </ul>
+    </nav>
+</header>
